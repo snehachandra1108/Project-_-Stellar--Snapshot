@@ -28,6 +28,8 @@ const StarAlignment = () => {
     fetchStarData();
   }, [selectedDate]);
 
+  const isImage = starData && starData.media_type === 'image';
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
       <h1 className="text-3xl font-bold mb-6">Star Alignment on {selectedDate}</h1>
@@ -35,7 +37,16 @@ const StarAlignment = () => {
       {starData ? (
         <div className="space-y-4 text-center max-w-lg">
           <h2 className="text-xl font-semibold">{starData.title}</h2>
-          <img src={starData.url} alt={starData.title} className="w-full h-auto rounded-md shadow-md" />
+          {isImage ? (
+            <img src={starData.url} alt={starData.title} className="w-full h-auto rounded-md shadow-md" />
+          ) : (
+            <div className="bg-gray-800 text-white p-4 rounded-md shadow-md">
+              <p>This is a video, and we cannot display it here. You can watch it on NASA's website.</p>
+              <a href={starData.url} target="_blank" rel="noopener noreferrer" className="underline">
+                Watch the video
+              </a>
+            </div>
+          )}
           <p>{starData.explanation}</p>
         </div>
       ) : (
