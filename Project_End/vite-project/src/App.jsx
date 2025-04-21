@@ -5,6 +5,7 @@ import StarAlignment from './pages/StarAlignment.jsx';
 import AboutUniverse from './pages/AboutUniverse.jsx';
 import Contact from './pages/Contact.jsx';
 import Navbar from './components/Navbar.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/star-alignment" element={<StarAlignment />} />
         <Route path="/about" element={<AboutUniverse />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
