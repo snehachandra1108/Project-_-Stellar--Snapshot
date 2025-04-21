@@ -22,6 +22,6 @@ Stellar Snapshot allows users to explore the celestial events (such as images or
 
 ## SetUp Instructions
 - 1.**Vite+React setup**
-- 2. Dependencies like **node.js** have been installed
-- 3. Installed **tailwind css**
+-2. Dependencies like **node.js** have been installed
+-3. Installed **tailwind css**
 -4. Fetched API key from NASA  APOD by filling some basic details.
