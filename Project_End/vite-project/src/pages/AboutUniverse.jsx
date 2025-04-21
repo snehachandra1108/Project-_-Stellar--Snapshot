@@ -2,13 +2,28 @@ import React from 'react';
 
 const AboutUniverse = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black text-white p-4">
-      <div className="max-w-2xl text-center">
-        <h1 className="text-3xl font-bold mb-4">About the Universe 🌌</h1>
-        <p className="text-lg">
-          The universe is a vast expanse of space filled with stars, planets, galaxies, and countless mysteries.
-          This project lets you explore the stars and celestial events based on real NASA data.
-          Discover the wonders of the cosmos from the comfort of your screen!
+    <div className="min-h-screen bg-black text-white p-6">
+      <h2 className="text-4xl font-bold text-center mb-6">🌌 About the Universe</h2>
+
+      <div className="max-w-3xl mx-auto space-y-4 text-lg">
+        <p>
+          The night sky has always been a source of wonder. Stars, planets, constellations — each has a story.
+        </p>
+
+        <p>
+          <span className="text-yellow-400 font-semibold">Celestial Alignments</span> happen when planets or celestial bodies appear to align in the sky from our Earthly perspective.
+        </p>
+
+        <p>
+          Ancient civilizations used star alignments for calendars, navigation, and even to guide their mythologies.
+        </p>
+
+        <p>
+          Did you know? 🌠 The light from stars takes years to reach us — when you look up, you're literally looking into the past.
+        </p>
+
+        <p>
+          Whether you're a dreamer, a space lover, or just curious — the cosmos has something for everyone.
         </p>
       </div>
     </div>
