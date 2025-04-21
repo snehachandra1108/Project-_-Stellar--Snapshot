@@ -1,57 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DateContext } from '../context/DateContext.jsx';
 
 const StarAlignment = () => {
   const { selectedDate } = useContext(DateContext);
   const [starData, setStarData] = useState(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  // Fetch star data on component mount or when selectedDate changes
   useEffect(() => {
     if (!selectedDate) return;
 
-    const fetchStarData = async () => {
+    const fetchData = async () => {
+      setLoading(true);
       try {
-        const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${selectedDate}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch star data');
-        }
+        const response = await fetch(
+          `https://api.nasa.gov/planetary/apod?api_key=${import.meta.env.VITE_NASA_API_KEY}&date=${selectedDate}`
+        );
         const data = await response.json();
-        setStarData(data);
+
+        if (data.code === 400 || data.error) {
+          setError('No data found for this date.');
+          setStarData(null);
+        } else {
+          setStarData(data);
+          setError('');
+        }
       } catch (err) {
-        setError('Error fetching data');
-        console.error(err);
+        setError('Failed to fetch data. Try again later.');
+        setStarData(null);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchStarData();
+    fetchData();
   }, [selectedDate]);
 
-  const isImage = starData && starData.media_type === 'image';
+  if (!selectedDate) {
+    return <p className="text-center text-white mt-10">No date selected. Please go back and choose one.</p>;
+  }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
-      <h1 className="text-3xl font-bold mb-6">Star Alignment on {selectedDate}</h1>
-      {error && <p className="text-red-400">{error}</p>}
-      {starData ? (
-        <div className="space-y-4 text-center max-w-lg">
-          <h2 className="text-xl font-semibold">{starData.title}</h2>
-          {isImage ? (
-            <img src={starData.url} alt={starData.title} className="w-full h-auto rounded-md shadow-md" />
+    <div className="min-h-screen bg-black text-white p-6 flex flex-col items-center">
+      {loading ? (
+        <p className="text-gray-400">Loading...</p>
+      ) : error ? (
+        <p className="text-red-400">{error}</p>
+      ) : starData ? (
+        <div className="max-w-xl text-center">
+          <h2 className="text-2xl font-bold mb-4">{starData.title}</h2>
+          {starData.media_type === 'image' ? (
+            <img src={starData.url} alt={starData.title} className="rounded shadow-md mb-4 max-h-[400px] mx-auto" />
           ) : (
-            <div className="bg-gray-800 text-white p-4 rounded-md shadow-md">
-              <p>This is a video, and we cannot display it here. You can watch it on NASA's website.</p>
-              <a href={starData.url} target="_blank" rel="noopener noreferrer" className="underline">
-                Watch the video
-              </a>
-            </div>
+            <iframe
+              title="space video"
+              src={starData.url}
+              className="w-full h-64 mb-4"
+              allowFullScreen
+            ></iframe>
           )}
-          <p>{starData.explanation}</p>
+          <p className="text-gray-300">{starData.explanation}</p>
         </div>
-      ) : (
-        <p>Loading star alignment data...</p>
-      )}
+      ) : null}
     </div>
   );
 };
