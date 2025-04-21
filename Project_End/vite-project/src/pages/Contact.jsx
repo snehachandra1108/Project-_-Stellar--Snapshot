@@ -2,35 +2,47 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col items-center px-6 py-10">
-      <h1 className="text-3xl font-bold mb-4">About the App & Creator 🌟</h1>
-      
-      <div className="max-w-2xl space-y-4 text-lg text-gray-300">
+    <div className="min-h-screen bg-black text-white p-6">
+      <h2 className="text-4xl font-bold text-center mb-6">📬 About This App</h2>
+
+      <div className="max-w-2xl mx-auto text-lg space-y-4">
         <p>
-          <strong>StellarSnapshot</strong> is a React-based web app that lets you explore how the sky looked on any date of your choice. 
-          Using NASA’s Astronomy Picture of the Day (APOD) API, it fetches real cosmic visuals and facts.
+          <span className="text-yellow-400 font-semibold">StellarSnapshot</span> is a React-powered app that lets you view the stars, planets, and celestial information for any date you choose.
         </p>
 
         <p>
-          This project was built using <span className="text-yellow-400 font-semibold">React, Tailwind CSS, React Router, and Context API</span>, as part of a learning journey in mastering modern frontend development.
+          It uses the NASA APOD API to bring stunning space visuals and facts right to your screen.
         </p>
 
         <p>
-          Developed by <span className="text-pink-400 font-bold">Sneha Chandra</span>, 1st year CS Student.
+          Built using modern web tools: <strong>React</strong>, <strong>Tailwind CSS</strong>, <strong>React Router</strong>, and <strong>Context API</strong>.
         </p>
 
+        <hr className="border-gray-600 my-4" />
+
+        <p>👩‍💻 Developed by: <span className="text-yellow-300 font-medium">Sneha Chandra</span></p>
         <p>
-            Connect here:
+          🔗 GitHub:{" "}
+          <a
+            href="https://github.com/snehachandra1108"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 underline hover:text-blue-300"
+          >
+            GitHub
+          </a>
         </p>
-
-        <ul className="list-disc list-inside">
-          <li>
-            🌐 <a href="https://github.com/snehachandra1108" className="text-blue-400 hover:underline" target="_blank">GitHub</a>
-          </li>
-          <li>
-            💼 <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit" className="text-blue-400 hover:underline" target="_blank">LinkedIn</a>
-          </li>
-        </ul>
+        <p>
+          🔗 LinkedIn:{" "}
+          <a
+            href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 underline hover:text-blue-300"
+          >
+            LinkedIn
+          </a>
+        </p>
       </div>
     </div>
   );
